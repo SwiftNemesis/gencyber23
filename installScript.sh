@@ -51,13 +51,21 @@
 sudo apt update
 sudo apt install -y docker.io
 sudo systemctl enable docker --now 
-sudo usermod -aG docker kali
 
 printf '%s\n' "deb https://download.docker.com/linux/debian bullseye stable" | sudo tee /etc/apt/sources.list.d/docker-ce.list
 curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/docker-ce-archive-keyring.gpg
 
 sudo apt update
 sudo apt install -y docker-ce docker-ce-cli containerd.io
+
+#Docker Compose Install
+cd ~/Downloads
+curl -s https://api.github.com/repos/docker/compose/releases/latest | grep browser_download_url  | grep docker-compose-linux-x86_64 | cut -d '"' -f 4 | wget -qi -
+sudo chmod +x docker-compose-linux-x86_64
+sudo mv docker-compose-linux-x86_64 /usr/local/bin/docker-compose
+
+sudo usermod -aG docker $USER
+newgrp docker
 
 #Install Steghide
 sudo apt install -y steghide
