@@ -53,8 +53,10 @@ sudo apt install -y docker.io
 sudo systemctl enable docker --now 
 sudo usermod -aG docker kali
 
-printf '%s\n' "deb https://download.docker.com/linux/debian bullseye stable" | sudo tee /etc/apt/sources.list.d/docker-ce.list
-curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/docker-ce-archive-keyring.gpg
+printf '%s\n' "deb https://download.docker.com/linux/debian bullseye stable"
+sudo tee /etc/apt/sources.list.d/docker-ce.list
+curl -fsSL https://download.docker.com/linux/debian/gpg
+sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/docker-ce-archive-keyring.gpg
 
 sudo apt update
 sudo apt install -y docker-ce docker-ce-cli containerd.io
@@ -64,7 +66,7 @@ sudo apt install -y steghide
 
 #Install gdown for downloading files from google drive
 cd ~/Downloads
-pip3 install gdown
+pip install gdown
 
 #Download Background photo
 gdown https://drive.google.com/uc?id=1G3ocEuBSHqVejQS_P8lAvXlUNhUnMY-S
