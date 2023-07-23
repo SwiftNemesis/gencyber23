@@ -74,7 +74,8 @@ xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor1/workspace0/last-imag
 rm ~/Downloads/ace.jpg
 
 #Placehodler for Bianca's WP lab
-
+docker pull ionesb1/gencyber23wpdb
+docker pull ionesb1/gencyber23wp
 
 #Install Coltons Cyber Clinic lab
 cd ~
