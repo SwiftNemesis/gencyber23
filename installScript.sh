@@ -46,3 +46,6 @@ cd cyber-clinic-lab
 echo "Spinning up containers for the lab, this may take up to **10 minutes**"
 sudo docker compose up -d
 sudo docker compose down -v
+
+cd ~
+echo "-* SCRIPT COMPLETED *-"
