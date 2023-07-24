@@ -10,10 +10,10 @@ curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o 
 sudo apt update
 sudo apt install -y docker.io
 sudo apt install -y docker-ce docker-ce-cli containerd.io
-sudo systemctl enable docker --now 
+# sudo systemctl enable docker --now 
+# sudo apt install -y docker.io
 
 sudo usermod -aG docker kali
-newgrp docker
 
 #Install Steghide
 sudo apt install -y steghide
@@ -43,5 +43,7 @@ git clone https://github.com/colton-gabertan/cyber-clinic-lab.git
 cd cyber-clinic-lab
 #This may take up to 10 minutes
 echo "Spinning up containers for the lab, this may take up to **10 minutes**"
-docker compose up -d
-docker compose down -v
+sudo docker compose up -d
+sudo docker compose down -v
+
+newgrp docker
