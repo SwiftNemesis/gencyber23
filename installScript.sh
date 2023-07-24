@@ -1,7 +1,9 @@
 #!/bin/sh
 
-# Install docker and docker compose
 sudo apt update
+#Install Steghide
+sudo apt install -y steghide
+# Install docker and docker compose
 printf '%s\n' "deb https://download.docker.com/linux/debian bullseye stable" |
   sudo tee /etc/apt/sources.list.d/docker-ce.list
 
@@ -10,9 +12,6 @@ curl -fsSL https://download.docker.com/linux/debian/gpg |
 
 sudo apt update
 sudo apt install -y docker-ce docker-ce-cli containerd.io
-#Install Steghide
-sudo apt install -y steghide
-
 #Install gdown for downloading files from google drive
 cd ~/Downloads
 pip install gdown
@@ -43,3 +42,4 @@ sudo docker compose down -v
 
 cd ~
 echo "-* SCRIPT COMPLETED *-"
+newgrp docker
