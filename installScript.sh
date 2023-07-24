@@ -2,15 +2,20 @@
 
 # Install docker and docker compose
 
-printf '%s\n' "deb https://download.docker.com/linux/debian bullseye stable" | sudo tee /etc/apt/sources.list.d/docker-ce.list
-curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/docker-ce-archive-keyring.gpg
+sudo apt-get update
+sudo apt-get install ca-certificates curl gnupg
 
-sudo apt update
-sudo systemctl enable docker --now 
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
 
-sudo usermod -aG docker kali
+echo \
+  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \
+  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
-sudo apt install -y docker-ce docker-ce-cli containerd.io
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 #Install Steghide
 sudo apt install -y steghide
 
@@ -41,5 +46,3 @@ cd cyber-clinic-lab
 echo "Spinning up containers for the lab, this may take up to **10 minutes**"
 sudo docker compose up -d
 sudo docker compose down -v
-
-newgrp docker
