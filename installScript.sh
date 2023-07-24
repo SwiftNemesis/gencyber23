@@ -12,7 +12,8 @@ sudo apt install -y docker.io
 sudo apt install -y docker-ce docker-ce-cli containerd.io
 sudo systemctl enable docker --now 
 
-sudo usermod -aG docker $USER
+sudo usermod -aG docker kali
+newgrp docker
 
 #Install Steghide
 sudo apt install -y steghide
@@ -29,8 +30,12 @@ sudo xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor1/workspace0/last
 rm ~/Downloads/ace.jpg
 
 #Placehodler for Bianca's WP lab
-sudo docker pull ionesb1/gencyber23wpdb
-sudo docker pull ionesb1/gencyber23wp
+sudo docker pull ionesb1/gencyber23wpdb:version1
+sudo docker pull ionesb1/gencyber23wp:version1
+#Create wordpress container from images
+sudo docker create ionesb1/gencyber23wpdb:version1 --name wpdb
+sudo docker create ionesb1/gencyber23wp:version1 --name wp
+sudo docker start wpdb wp
 
 #Install Coltons Cyber Clinic lab
 cd ~
